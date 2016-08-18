@@ -1,0 +1,16 @@
+##################
+# File managed by puppet, don't edit
+##################
+
+traefikLogsFile = "/log/traefik.log"
+accessLogsFile = "/log/access.log"
+logLevel = "<%= scope['traefik::log_level'] %>"
+
+<% if scope['traefik::web_console_binding'] != :undef -%>
+[web]
+address = ":8080"
+<% end -%>
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+watch = true

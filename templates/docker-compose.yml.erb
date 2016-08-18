@@ -1,0 +1,31 @@
+##################
+# File managed by puppet, don't edit
+##################
+version: '2'
+networks:
+  services:
+<% if scope['traefik::services_network'] != :undef -%>
+    external:
+      name: <%= scope['traefik::services_network'] %>
+<% end -%>
+
+services:
+  traefik:
+    image: traefik:v1.0.2
+    networks:
+      services:
+    ports:
+      - 80:80
+      - 443:443
+<% if scope['traefik::web_console_binding'] != :undef -%>
+      - <%= scope['traefik::web_console_binding'] %>:8080
+<% end -%>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - <%= scope['traefik::install_dir'] %>/traefik.toml:/etc/traefik/traefik.toml
+      - <%= scope['traefik::log_dir'] %>:/log
+<% if scope['traefik::ca_dir'] != :undef -%>
+      - /ca:<%= scope['traefik::ca_dir'] %>
+<% end -%>
+  
+

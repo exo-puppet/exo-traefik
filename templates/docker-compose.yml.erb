@@ -25,7 +25,7 @@ services:
       - <%= scope['traefik::install_dir'] %>/traefik.toml:/etc/traefik/traefik.toml
       - <%= scope['traefik::log_dir'] %>:/log
 <% if scope['traefik::ca_dir'] != :undef -%>
-      - /ca:<%= scope['traefik::ca_dir'] %>
+      - <%= scope['traefik::ca_dir'] %>:/ca
 <% end -%>
   
 

@@ -4,7 +4,11 @@ class traefik (
   $web_console_binding  = '127.0.0.1:8080',
   $log_level            = 'ERROR',
   $services_network     = 'reverse_proxy',
+  $enable_https         = false,
+  $force_https          = false,
   $ca_dir               = undef,
+  $cert_file            = undef,
+  $key_file             = undef,
 ) {
   file { "${traefik::install_dir}" :
     ensure    => directory,

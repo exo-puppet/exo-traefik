@@ -11,6 +11,22 @@ logLevel = "<%= scope['traefik::log_level'] %>"
 address = ":8080"
 <% end -%>
 
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+<% if scope['traefik::force_https'] == true -%>
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+<% end -%>
+<% if scope['traefik::enable_https'] == true -%>
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      CertFile = "/ca/<%= scope['traefik::cert_file'] %>"
+      KeyFile = "/ca/<%= scope['traefik::key_file'] %>"
+<% end -%>
+
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 watch = true

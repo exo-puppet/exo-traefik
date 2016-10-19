@@ -9,6 +9,8 @@ class traefik (
   $ca_dir               = undef,
   $cert_file            = undef,
   $key_file             = undef,
+  $http_binding         = '0.0.0.0:80',
+  $https_binding        = '0.0.0.0:443',
 ) {
   file { "${traefik::install_dir}" :
     ensure    => directory,

@@ -15,8 +15,8 @@ services:
     networks:
       services:
     ports:
-      - 80:80
-      - 443:443
+      - <%= scope['traefik::http_binding'] %>:80
+      - <%= scope['traefik::https_binding'] %>:443
 <% if scope['traefik::web_console_binding'] != :undef -%>
       - <%= scope['traefik::web_console_binding'] %>:8080
 <% end -%>

@@ -11,7 +11,7 @@ networks:
 
 services:
   traefik:
-    image: traefik:v1.0.2
+    image: traefik:<%= scope['traefik::image_version'] %>
     networks:
       services:
     ports:
@@ -27,5 +27,6 @@ services:
 <% if scope['traefik::ca_dir'] != :undef -%>
       - <%= scope['traefik::ca_dir'] %>:/ca
 <% end -%>
-  
-
+<% if scope['traefik::debug'] == true -%>
+    command: [ "-d" ]
+<% end -%>

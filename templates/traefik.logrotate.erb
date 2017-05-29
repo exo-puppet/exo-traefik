@@ -1,0 +1,15 @@
+##################
+# File managed by puppet, don't edit
+##################
+<%= scope['traefik::log_dir'] %>/*.log {
+  daily
+  missingok
+  rotate 365
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+  nocreate
+  sharedscripts
+  endscript
+}

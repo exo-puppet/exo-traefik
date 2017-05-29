@@ -54,4 +54,12 @@ class traefik (
     ],
   }
 
+  ###########################
+  #  LogRotate
+  ###########################
+  file { '/etc/logrotate.d/traefik.conf' :
+    ensure => present,
+    content => template('traefik/traefik.logrotate.erb'),
+  }
+
 }

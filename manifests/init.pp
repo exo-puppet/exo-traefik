@@ -40,6 +40,7 @@ class traefik (
     owner     => 'root',
     group     => 'root',
     mode      => '640',
+    notify    => [Docker_compose["${install_dir}/docker-compose.yml"]]
   }
 
   ###########################

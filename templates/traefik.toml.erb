@@ -22,7 +22,6 @@ address = ":8080"
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
-      [entryPoints.https.tls.options.default]
       minVersion = "VersionTLS12"
       [[entryPoints.https.tls.certificates]]
       CertFile = "/ca/<%= scope['traefik::cert_file'] %>"
